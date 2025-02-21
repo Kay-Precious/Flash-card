@@ -10,10 +10,10 @@ current_card = {}
 # Handles FileNotFoundError if words_to_learn.csv doesn't exists yet
 try:
     data = pd.read_csv(
-        "PythonOOP_projects.py/Flash-Card-Project/data/words_to_learn.csv")
+        "./data/words_to_learn.csv")
 except FileNotFoundError:
     data = pd.read_csv(
-        "PythonOOP_projects.py/Flash-Card-Project/data/french_words.csv")
+        "./data/french_words.csv")
     to_learn = data.to_dict(orient="records")
 else:
     to_learn = data.to_dict(orient="records")
@@ -43,7 +43,7 @@ def is_known():
     to_learn.remove(current_word)
     data = pd.DataFrame(to_learn)
     data.to_csv(
-        'PythonOOP_projects.py/Flash-Card-Project/data/words_to_learn.csv', index=False)
+        './data/words_to_learn.csv', index=False)
     next_card()
 
 
@@ -58,9 +58,9 @@ timer = window.after(3000, func=flip_card)
 # Canvas set-up
 canvas = Canvas(width=800, height=526)
 card_front_image = PhotoImage(
-    file="PythonOOP_projects.py/Flash-Card-Project/images/card_front.png")
+    file="./images/card_front.png")
 card_back_image = PhotoImage(
-    file="PythonOOP_projects.py/Flash-Card-Project/images/card_back.png")
+    file="./images/card_back.png")
 canvas_image = canvas.create_image(400, 263, image=card_front_image)
 card_title = canvas.create_text(
     400, 150, text="", font=("Ariel", 40, "italic"))
@@ -70,14 +70,14 @@ canvas.grid(row=0, column=0, columnspan=2)
 
 # Wrong Button set-up
 wrong_image = PhotoImage(
-    file="PythonOOP_projects.py/Flash-Card-Project/images/wrong.png")
+    file="./images/wrong.png")
 wrong_button = Button(
     image=wrong_image, highlightthickness=0, command=next_card)
 wrong_button.grid(row=1, column=0)
 
 # Right Button set-up
 right_image = PhotoImage(
-    file="PythonOOP_projects.py/Flash-Card-Project/images/right.png")
+    file="./images/right.png")
 right_button = Button(
     image=right_image, highlightthickness=0, command=is_known)
 right_button.grid(row=1, column=1)
